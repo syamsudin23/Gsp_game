@@ -17,10 +17,12 @@ $routes->POST('/process_login', 'c_Auth::process_login'); // rute -> halaman reg
 $routes->get('/register', 'c_Auth::register'); // rute -> halaman register
 
 
-$routes->POST('/logout', 'c_Auth::logout'); // rute -> untuk logout dan kembali ke login
+$routes->get('/logout', 'c_Auth::logout'); // rute -> untuk logout dan kembali ke login
 
 
 $routes->get('/dashboard', 'c_Dash::Dashboard_user'); // rute -> halaman dashboard User setelah Login
+
+$routes->get('/Leaderboard', 'c_Lboard::Leader_board'); // rute -> halaman dashboard User setelah Login
 
 
 

@@ -719,14 +719,28 @@
             font-size: 14px;
             color: white;
             position: fixed;
-            background-color: rgba(66, 83, 194, 0.76);
-            right: 130px;
+            background-color: rgb(66, 83, 194);
+            right: 135px;
             padding: 10px 20px;
             border-radius: 10px;
             opacity: 0;
             transition: all .2s ease-in-out;
             z-index: 2;
 
+        }
+
+        .corner-box-tooltip::after{
+            content: "";
+            display: block; 
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 8px solid rgb(66, 83, 194);
+            position: absolute;
+            top: 8px;  
+            right: -8.1px;
+            z-index: 2;
         }
 
 
@@ -807,7 +821,7 @@
         </div>
     </section>
 
-
+    
 
     <!-- End Home section -->
 
@@ -1025,12 +1039,6 @@
         </section>
 
     <!-- End Creator team -Section-->
-
-
-
-
-
-
 
 
 

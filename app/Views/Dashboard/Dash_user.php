@@ -772,7 +772,7 @@
             <a href="/dashboard" class="active">
                 <i class="fa-solid fa-house"></i>  Home
             </a>
-            <a href="#">
+            <a href="/Leaderboard">
                  <i class="fa-solid fa-ranking-star"></i> Leaderboard
             </a>
          
