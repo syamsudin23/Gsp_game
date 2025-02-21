@@ -396,7 +396,7 @@
         }
 
         #excellent-section h1{
-            background-color:;
+            background-color:black;
             margin-top: 200px;
             text-shadow: 2px 2px 20px rgba(216, 198, 198, 0.35);
         }
@@ -560,7 +560,7 @@
             padding-right: 50px;
             padding-left: 50px;
             margin-top: 20px;
-            background-color: ;
+            background-color:white;
             transition: opacity 0.5s ease-out;
             font-family: 'Poppins';
             font-size: 1em;
@@ -809,8 +809,7 @@
     <!-- Home section -->
     <section id="home-section">
         <div class="container-home">
-            <h1><br>Improve your<span class="highlight"><br>Picture guessing</span><span class="span2"> skills</span></h1>
-            <h4>With this Game</4><br>
+            <h1><br>Hi, Username<span class="highlight"><br>When play the </span><span class="span2"> Game ?</span></h1>
 
             <a href="#" class="btn-start mt-5 ps-5 pe-5">
                 <span class="span-lets-start">Let's start</span>
