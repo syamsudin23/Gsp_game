@@ -396,7 +396,7 @@
         }
 
         #excellent-section h1{
-            background-color:;
+            background-color:transparent;
             margin-top: 200px;
             text-shadow: 2px 2px 20px rgba(216, 198, 198, 0.35);
         }
@@ -560,7 +560,7 @@
             padding-right: 50px;
             padding-left: 50px;
             margin-top: 20px;
-            background-color: ;
+            background-color: transparent;
             transition: opacity 0.5s ease-out;
             font-family: 'Poppins';
             font-size: 1em;
