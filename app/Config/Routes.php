@@ -22,6 +22,8 @@ $routes->get('/logout', 'c_Auth::logout'); // rute -> untuk logout dan kembali k
 
 $routes->get('/dashboard', 'c_Dash::Dashboard_user'); // rute -> halaman dashboard User setelah Login
 
+$routes->get('/Leaderboard', 'c_Lboard::Leader_board'); // rute -> halaman dashboard User setelah Login
+
 
 
 

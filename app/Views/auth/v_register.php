@@ -105,7 +105,6 @@
             <div class="form-container">
                 <h3 class="card-title mt-2 mb-5" style="font-weight: bold;padding-bottom:20px;  color:rgb(97, 52, 220);">Register</h3>
                 <form action="/login" method="post" id="loginForm">
-                    <?= csrf_field() ?>
                     <input type="text" name="username" id="username" placeholder="Username" required class="form-input">
                     <input type="password" name="password" id="password" placeholder="Password" required class="form-input mb-4">
                     <button type="submit" class="btn btn-primary btn-login">Register Now!</button>

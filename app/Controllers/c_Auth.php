@@ -38,7 +38,7 @@ class c_Auth extends BaseController
 
     public function logout()
     {
-        session()->destroy();
+        session()->destroy(); 
         return redirect()->to('/login');
     }
 
