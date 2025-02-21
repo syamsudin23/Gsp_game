@@ -98,17 +98,30 @@
 </head>
 <body>
     <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-        <div class="card custom-card" id="loginCard">
+        <div class="card custom-card" id="registerCard">
             <div  class="image-container">
                 <img src="<?= base_url('uploads/img/Produk.png') ?>" alt="logo" class="logo" >
             </div>
+
             <div class="form-container">
+
                 <h3 class="card-title mt-2 mb-5" style="font-weight: bold;padding-bottom:20px;  color:rgb(97, 52, 220);">Register</h3>
-                <form action="/login" method="post" id="loginForm">
+                
+                <form action="/process_register" method="post" id="registerForm" >
+
                     <input type="text" name="username" id="username" placeholder="Username" required class="form-input">
                     <input type="password" name="password" id="password" placeholder="Password" required class="form-input mb-4">
+                    
+                    <!-- Status user hidden -->
+                    <input type="hidden" name="status_user" value="user">
+
+                    <!-- Score hidden -->
+                    <input type="hidden" name="score" value="0">
                     <button type="submit" class="btn btn-primary btn-login">Register Now!</button>
+               
+             
                 </form>
+
                 <p class="text-muted mt-5">Already have account? <a href="/login">Login</a></p>
             </div>
         </div>
@@ -116,15 +129,63 @@
 
     <!-- GSAP Animation Script -->
     <script>
-        gsap.set("#loginCard", { opacity: 0, y: 100 });
-        gsap.set("#loginForm", { opacity: 0 });
+        gsap.set("#registerCard", { opacity: 0, y: 100 });
+        gsap.set("#registerForm", { opacity: 0 });
 
         gsap.timeline()
-            .to("#loginCard", { opacity: 1, y: 0, duration: 2, ease: "power3.out" })
-            .to("#loginForm", { opacity: 1, duration: .8, ease: "power3.out" }, "-=0.5");
+            .to("#registerCard", { opacity: 1, y: 0, duration: 2, ease: "power3.out" })
+            .to("#registerForm", { opacity: 1, duration: .8, ease: "power3.out" }, "-=0.5");
     </script>
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- SweetAlert CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+foun<script>
+    $(document).ready(function () {
+        $("#registerForm").submit(function (event) {
+            event.preventDefault(); // Mencegah reload
+
+            $.ajax({
+                url: "<?= base_url('/process_register'); ?>", // Arahkan ke controller
+                type: "POST",
+                data: $(this).serialize(), // Ambil data form
+                success: function (response) {
+                    if (response.status === "success") {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Selamat!',
+                            text: response.message,
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "<?= base_url('/login'); ?>";
+                            }
+                        });
+                    } else if (response.status === "info") {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Username Sudah Digunakan',
+                            text: response.message,
+                            confirmButtonText: 'OK'
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops!',
+                            text: response.message
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+
 </body>
 </html>

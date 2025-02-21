@@ -34,9 +34,7 @@
                 left: -5%;
                 width: 110%;
                 height: 110%;
-                background: url('Uploads/img/Nefle.png') no-repeat center/cover;
-                filter: blur(7px);
-                z-index: -1;
+                background: url('Uploads/img/Background .png') no-repeat center/cover;
                 animation: scrollBackground 13s linear infinite alternate;
             }
 
@@ -154,7 +152,7 @@
                         <p style="color: red;"><?php echo session()->getFlashdata('error'); ?></p>
                     <?php endif; ?>
 
-                    <form action="<?= base_url('/process_login') ?>" method="post" id="loginForm">
+                    <form method="post" id="loginForm">
 
                         <input type="text" name="username" id="username" placeholder="Username" required class="form-input">
                         <input type="password" name="password" id="password" placeholder="Password" required class="form-input mb-4">
@@ -186,5 +184,64 @@
         <!-- Fontawesome kit -->
 
         <script src="https://kit.fontawesome.com/c6b28474b5.js" crossorigin="anonymous"></script>
+
+
+        <!-- SweetAlert CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#loginForm").on("submit", function (event) {
+                    event.preventDefault(); // Mencegah reload default form
+
+                        $.ajax({
+                                type: "POST",
+                                url: "<?= base_url('/process_login') ?>",
+                                data: $(this).serialize(),
+                                dataType: "json",
+
+                        success: function (response) {
+                            if (response.status === "success") {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Selamat!',
+                                    text: response.message,
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = "<?= base_url('/dashboard'); ?>";
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops!',
+                                    text: response.message,
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        },
+                        error: function (xhr) {
+                            console.log(xhr.responseText); // Debugging jika error
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops!',
+                                text: 'Terjadi kesalahan, coba lagi!',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    });
+
+                    return false; // **Pastikan form tidak reload**
+                });
+            });
+        </script>
+
+
+
+
     </body>
     </html>
