@@ -6,15 +6,16 @@
     <title>GSP Game - Dashboard</title>
 
     <!-- Link Fontawesome icon -->
+            <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 
 
@@ -396,7 +397,7 @@
         }
 
         #excellent-section h1{
-            background-color:black;
+            background-color:transparent;
             margin-top: 200px;
             text-shadow: 2px 2px 20px rgba(216, 198, 198, 0.35);
         }
@@ -560,7 +561,7 @@
             padding-right: 50px;
             padding-left: 50px;
             margin-top: 20px;
-            background-color:white;
+            background-color:transparent;
             transition: opacity 0.5s ease-out;
             font-family: 'Poppins';
             font-size: 1em;
@@ -757,6 +758,21 @@
             visibility: visible; /* Bisa diklik */
             
         }
+         
+        .carousel-inner {
+            transition: transform 0.6s ease-in-out !important; 
+            position: fixed; /* Agar sidebar tetap di posisi atas */
+            top: 100px;
+            left: 0;
+            width: 100%; /* Membuat sidebar full width */
+            padding: 15px 20px;
+        }
+
+        .carousel-item{
+            width:200px;
+        }
+        
+
 
         @keyframes shake-arrow-back-to-top {
             0% { transform: translateY(0px); }
@@ -768,20 +784,17 @@
         }
 
         
-
-        
-
-        
     </style>
 </head>
 <body>
 
     <!-- navbar -->
-
+        
     <div class="navbar">
         <div class="logo">
            <a href="#"> <img src="<?= base_url('uploads/img/gsp-logo.png') ?>" alt="gsp-logo"></a>
         </div>
+
         <div class="nav-links">
             <a href="/dashboard" class="active">
                 <i class="fa-solid fa-house"></i>  Home
@@ -790,6 +803,7 @@
                  <i class="fa-solid fa-ranking-star"></i> Leaderboard
             </a>
          
+            
         </div>
         <div class="user-info">
           <p style="cursor: default;">Login</p>
@@ -808,8 +822,62 @@
 
     <!-- Home section -->
     <section id="home-section">
+   
+   
+
+          
+    <main role="main">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" >
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item  active">
+            <img class="first-slide" src="uploads/img/Prev.jpeg" alt="First slide">
+            <div class="container">
+                <div class="carousel-caption text-left">
+                <h1>Diskon</h1>
+                <p>Diskon Besar besaran nih ! Buruan Check Out sekarang</p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">View</a></p>
+                </div>
+            </div>
+            </div>
+            <div class="carousel-item">
+            <img class="second-slide" src="uploads/img/Next.jpeg" alt="Second slide">
+            <div class="container">
+                <div class="carousel-caption">
+                <h1>Rumah sunyi.</h1>
+                <p>Rumah penuh dengan kesunyian dan tak berpehuni .</p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">Details..</a></p>
+                </div>
+            </div>
+            </div>
+            <div class="carousel-item">
+            <img class="third-slide" src="uploads/img/3.jpeg" alt="Third slide">
+            <div class="container">
+                <div class="carousel-caption text-right">
+                <h1>Camping .</h1>
+                <p>Camping di malam hari yang sangat sunyi di hutan hari ini.</p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">View</a></p>
+                </div>
+            </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        </div>
+
+
         <div class="container-home">
-            <h1><br>Hi, Username<span class="highlight"><br>When play the </span><span class="span2"> Game ?</span></h1>
+            <h1><br>Hi, Username <span class="highlight"><br>Want to Play the</span><span class="span2"> Game ? </span></h1>
 
             <a href="#" class="btn-start mt-5 ps-5 pe-5">
                 <span class="span-lets-start">Let's start</span>
@@ -1135,8 +1203,29 @@
             gsap.to(window, {duration: 1, scrollTo: "#about-section"});
         });
     </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Ambil elemen carousel
+    var myCarousel = document.querySelector("#myCarousel");
 
+    // Fungsi untuk menampilkan slide berikutnya
+    document.querySelector(".carousel-control-next").addEventListener("click", function () {
+        $("#myCarousel").carousel("next");
+    });
 
+    // Fungsi untuk menampilkan slide sebelumnya
+    document.querySelector(".carousel-control-prev").addEventListener("click", function () {
+        $("#myCarousel").carousel("prev");
+    });
+
+    // Menambahkan efek smooth tanpa jeda
+    $(".carousel").on("slid.bs.carousel", function () {
+        $(this).find(".carousel-item").removeClass("smooth-transition");
+        $(this).find(".carousel-item.active").addClass("smooth-transition");
+    });
+});
+
+</script>
 
 
     <script>
@@ -1147,9 +1236,6 @@
         gsap.timeline()
         .to(".container-home", { opacity: 1, duration: .8, ease: "power3.out" }, "-=0.5"); // Animasi untuk isi dalam container  
     </script>
-
-
-
 
      <!-- GSAP -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
